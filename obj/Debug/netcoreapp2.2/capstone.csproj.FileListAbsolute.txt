@@ -1,0 +1,11 @@
+C:\Users\Malik Whitfield\source\codeworks\csharp\capstone\obj\Debug\netcoreapp2.2\capstone.csprojAssemblyReference.cache
+C:\Users\Malik Whitfield\source\codeworks\csharp\capstone\obj\Debug\netcoreapp2.2\capstone.csproj.CoreCompileInputs.cache
+C:\Users\Malik Whitfield\source\codeworks\csharp\capstone\obj\Debug\netcoreapp2.2\capstone.AssemblyInfoInputs.cache
+C:\Users\Malik Whitfield\source\codeworks\csharp\capstone\obj\Debug\netcoreapp2.2\capstone.AssemblyInfo.cs
+C:\Users\Malik Whitfield\source\codeworks\csharp\capstone\bin\Debug\netcoreapp2.2\capstone.deps.json
+C:\Users\Malik Whitfield\source\codeworks\csharp\capstone\bin\Debug\netcoreapp2.2\capstone.runtimeconfig.json
+C:\Users\Malik Whitfield\source\codeworks\csharp\capstone\bin\Debug\netcoreapp2.2\capstone.runtimeconfig.dev.json
+C:\Users\Malik Whitfield\source\codeworks\csharp\capstone\bin\Debug\netcoreapp2.2\capstone.dll
+C:\Users\Malik Whitfield\source\codeworks\csharp\capstone\bin\Debug\netcoreapp2.2\capstone.pdb
+C:\Users\Malik Whitfield\source\codeworks\csharp\capstone\obj\Debug\netcoreapp2.2\capstone.dll
+C:\Users\Malik Whitfield\source\codeworks\csharp\capstone\obj\Debug\netcoreapp2.2\capstone.pdb

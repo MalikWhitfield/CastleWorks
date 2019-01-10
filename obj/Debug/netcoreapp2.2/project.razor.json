@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "c:\\Users\\Malik Whitfield\\source\\codeworks\\csharp\\capstone\\capstone.csproj",
+  "TargetFramework": "netcoreapp2.2",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
+}

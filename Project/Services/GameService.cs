@@ -14,7 +14,7 @@ namespace capstone.Project.Services
         //Initializes the game, creates rooms, their exits, and add items to rooms
         public void Setup()
         {
-            Game = GameSetup.Setup(new Game());
+            Game = GameSetup.Setup();
             Console.BackgroundColor = ConsoleColor.Black;
             System.Console.WriteLine("You awake in a dimly lit room...");
             StartGame();
@@ -36,8 +36,9 @@ namespace capstone.Project.Services
             Playing = true;
             while (Playing)
             {
-                // Console.Clear();
-                // System.Console.WriteLine(Game.CurrentRoom.Description);
+                // Console.WriteLine(Game.CurrentPlayer);
+                Console.Clear();
+                System.Console.WriteLine(Game.CurrentRoom.Description);
                 GetUserInput();
             }
         }
@@ -100,7 +101,6 @@ namespace capstone.Project.Services
 
         }
 
-        #region Console Commands
 
         //Stops the application
         public void Quit()
@@ -129,13 +129,14 @@ namespace capstone.Project.Services
         {
             if (Game.CurrentRoom.Exits.ContainsKey(direction))
             {
-                Console.Clear();
+                // Console.Clear();
                 IRoom nextRoom = Game.CurrentRoom.Exits[direction];
                 if (nextRoom is ChallengeRoom)
                 {
                     ChallengeRoom h = (ChallengeRoom)nextRoom;
-                    Console.Clear();
-                    System.Console.WriteLine(nextRoom.Description);
+                    // System.Console.WriteLine("CR Casted");
+                    // Console.Clear();
+                    System.Console.WriteLine(h.Description);
                     if (!h.OnChallenge())
                     {
                         while (true)
@@ -150,10 +151,28 @@ namespace capstone.Project.Services
                             {
                                 Quit();
                             }
+
+                            // if (Game.CurrentRoom.Name == "East Room")
+                            // {
+                            //     System.Console.WriteLine("Kasandra says: 'WHAT?! How do you have all those cards?! You must be cheating! You lose!");
+                            //     System.Console.WriteLine("Play again? ( y / n )");
+                            //     string input = Console.ReadLine();
+                            //     if (input == "y")
+                            //     {
+                            //         Reset();
+                            //     }
+                            //     else
+                            //     {
+                            //         Quit();
+                            //     }
+                            // }
+
+
+
                         }
                     }
                 }
-                Game.CurrentRoom = Game.CurrentRoom.Exits[direction];
+                Game.CurrentRoom = nextRoom;
                 System.Console.WriteLine($"You are in the {Game.CurrentRoom.Name}");
             }
             else
@@ -260,6 +279,7 @@ namespace capstone.Project.Services
                 System.Console.WriteLine("Brittany says: 'That's a great looking resume! You're gonna do great out there! :)");
                 GetUserInput();
             }
+
         }
 
         //Print the list of items in the players inventory to the console
@@ -274,6 +294,7 @@ namespace capstone.Project.Services
         //Display the CurrentRoom Description, Exits, and Items
         public void Look()
         {
+            Console.BackgroundColor = ConsoleColor.DarkMagenta;
             System.Console.WriteLine($"You are in the {Game.CurrentRoom.Name}");
             System.Console.WriteLine($"{Game.CurrentRoom.Description}");
             System.Console.WriteLine("The items in this room are: ");
@@ -281,9 +302,24 @@ namespace capstone.Project.Services
             {
                 System.Console.WriteLine($"{item.Name}");
             }
+            Console.BackgroundColor = ConsoleColor.Black;
         }
+        // public bool DeathCheck()
+        // {
+        //     Console.WriteLine("Game: " + Game);
+        //     Console.WriteLine("Player: " + Game.CurrentPlayer);
+        //     List<Item> deathItems = new List<Item>();
+        //     foreach (var item in Game.CurrentPlayer.Inventory)
+        //     {
+        //         if (item.Name == "BowserCard" || item.Name == "GoalPole" || item.Name == "OneUp" || item.Name == "LavaBubble")
+        //         {
+        //             deathItems.Add(item);
+        //         }
+        //     }
+
+        //     return true;
+        // }
     }
 
-    #endregion
 }
 

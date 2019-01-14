@@ -10,8 +10,10 @@ namespace capstone.Project.Functions
     public static class GameSetup
     {
 
-        public static Game Setup(Game game)
+        public static Game Setup()
         {
+            Game game = new Game();
+            GameService gameService = new GameService();
             MinigameService mgs = new MinigameService();
             System.Console.WriteLine("Welcome to Boise CodeWorks, or should I say: 'Welcome to your future, should you survive.'");
             System.Console.Write("What is your name? : ");
@@ -20,7 +22,7 @@ namespace capstone.Project.Functions
             #region //ITEMS
             Item bowserCard = new Item("BowserCard", "This card is from an ancient game played to distract the ancestors from class, although it only resulted in turmoil and the disappointment of one named 'Malik'... It changes any level's value to 0, whatever that means.");
             Item goalPole = new Item("GoalPole", "This card is from an ancient game played to distract the ancestors from class, although it only resulted in turmoil and the disappointment of one named 'Malik'... It seems this card brings your level to 10, whatever that is.");
-            Item oneUp = new Item("1Up", "This card is from an ancient game played to distract the ancestors from class, although it only resulted in turmoil and the disappointment of one named 'Malik'... It seems this card allows you to steal another player's life. But only jerks would do that. Unless Malik did it, then it's reasonable.");
+            Item oneUp = new Item("OneUp", "This card is from an ancient game played to distract the ancestors from class, although it only resulted in turmoil and the disappointment of one named 'Malik'... It seems this card allows you to steal another player's life. But only jerks would do that. Unless Malik did it, then it's reasonable.");
             Item lavaBubble = new Item("LavaBubble", "This card is from an ancient game played to distract the ancestors from class, although it only resulted in turmoil and the disappointment of one named 'Malik'... It seems as though this card allows its user to destroy the life of another player. But only a mondo jerk would do thta. Unless Malik did it, then that's just a great move.");
             Item batPoo = new Item("BatPoo", "This is just bat poo, although it is smelly, it may help you.");
             Item resume = new Item("Resume", "This is your old resume! It may need to be updated.");
@@ -39,6 +41,7 @@ namespace capstone.Project.Functions
             #region //ROOM EXITS AND CONNECTIONS
             rpsChall.OnChallenge += mgs.Rps;
             numsChall.OnChallenge += mgs.NumberGuess;
+            // eastRoom.OnChallenge += gameService.DeathCheck;
             southRoom.Exits.Add("north", rpsChall);
             rpsChall.Exits.Add("north", centralRoom);
             numsChall.Exits.Add("west", westRoom);

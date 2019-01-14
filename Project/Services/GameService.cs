@@ -15,7 +15,7 @@ namespace capstone.Project.Services
         public void Setup()
         {
             Game = GameSetup.Setup(new Game());
-            // Help();
+            Console.BackgroundColor = ConsoleColor.Black;
             System.Console.WriteLine("You awake in a dimly lit room...");
             StartGame();
         }
@@ -23,6 +23,8 @@ namespace capstone.Project.Services
         //Restarts the game 
         public void Reset()
         {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.Clear();
             Playing = true;
             Setup();
             StartGame();
@@ -104,6 +106,7 @@ namespace capstone.Project.Services
         public void Quit()
         {
             Playing = false;
+            Console.BackgroundColor = ConsoleColor.Black;
             Console.Clear();
         }
 
@@ -135,7 +138,19 @@ namespace capstone.Project.Services
                     System.Console.WriteLine(nextRoom.Description);
                     if (!h.OnChallenge())
                     {
-                        Quit();
+                        while (true)
+                        {
+                            System.Console.WriteLine("You failed the challenge!! Would you like to play again? ( y / n )");
+                            string input = Console.ReadLine();
+                            if (input == "y")
+                            {
+                                Reset();
+                            }
+                            else
+                            {
+                                Quit();
+                            }
+                        }
                     }
                 }
                 Game.CurrentRoom = Game.CurrentRoom.Exits[direction];
@@ -145,6 +160,8 @@ namespace capstone.Project.Services
             {
                 System.Console.WriteLine("You walk right into a wall.");
             }
+            Console.BackgroundColor = ConsoleColor.Black;
+
         }
 
         //When taking an item be sure the item is in the current room 
@@ -185,30 +202,24 @@ namespace capstone.Project.Services
 
             if (itemName == "trueresume" && Game.CurrentRoom.Name.ToString() == "North Room")
             {
+                Console.BackgroundColor = ConsoleColor.DarkRed;
                 System.Console.WriteLine("Jake says: 'Haha! So you've got your True Resume... It looks good, but can you pass the final challenge?");
-                System.Console.WriteLine("Zack says: 'Say the magic phrase'");
+                System.Console.WriteLine("Zach says: 'Say the magic phrase'");
                 string input = Console.ReadLine().ToLower();
                 if (input == "go bears")
                 {
+                    Console.BackgroundColor = ConsoleColor.DarkCyan;
                     System.Console.WriteLine("Congratulations, you won! Go get that job!");
                     System.Console.WriteLine("Type 'quit' to leave the game or 'reset' to do it all again.");
                 }
                 else
                 {
-                    System.Console.WriteLine("You made it this far and still couldn't figure what this was all about... you lose");
+                    System.Console.WriteLine("Porter says: You made it this far and still couldn't figure what this was all about... you lose");
                     System.Console.WriteLine("Continue playing? ( y / n)");
-                    // string answer = Console.ReadLine().ToLower();
-                    // if (answer == "y")
-                    // {
-                    //     Reset();
-                    // }
-                    // if (answer == "n")
-                    // {
-                    //     Playing = false;
-                    // }
                     GetUserInput();
                 }
             }
+            #region //FOR NO USE CARDS
             if (itemName == "bowsercard")
             {
                 System.Console.WriteLine("Using this card individually doesn't do much, however it does seem necessary to have in your possession.");
@@ -225,9 +236,17 @@ namespace capstone.Project.Services
             {
                 System.Console.WriteLine("Using this card individually doesn't do much, however it does seem necessary to have in your possession.");
             }
+            #endregion
             if (itemName == "resume" && Game.CurrentRoom.Name.ToString() == "East Room")
             {
                 System.Console.WriteLine("Brittany says: Is this a selfie on your resume! You know better than that! You lose!");
+                System.Console.WriteLine("Play again? ( y / n) ");
+                GetUserInput();
+            }
+            if (itemName == "resume" && Game.CurrentRoom.Name.ToString() == "North Room")
+            {
+                Console.BackgroundColor = ConsoleColor.DarkRed;
+                System.Console.WriteLine("Jake says: You think you can beat me with that old, dusty resume?! The job market will destroy you!");
                 System.Console.WriteLine("Play again? ( y / n) ");
                 GetUserInput();
             }
@@ -236,15 +255,10 @@ namespace capstone.Project.Services
                 System.Console.WriteLine("Using that does nothing here.");
                 GetUserInput();
             }
-            if (itemName == "resume" && Game.CurrentRoom.Name.ToString() == "North Room")
+            if (itemName == "trueresume" && Game.CurrentRoom.Name.ToString() == "East Room")
             {
-                System.Console.WriteLine("Jake says: You think you can beat me with that old, dusty resume?! The job market will destroy you!");
-                System.Console.WriteLine("Play again? ( y / n) ");
+                System.Console.WriteLine("Brittany says: 'That's a great looking resume! You're gonna do great out there! :)");
                 GetUserInput();
-            }
-            else
-            {
-                System.Console.WriteLine("Hm, seems like that's not an item. Try an actual item.");
             }
         }
 
@@ -253,7 +267,7 @@ namespace capstone.Project.Services
         {
             foreach (Item item in Game.CurrentPlayer.Inventory)
             {
-                System.Console.WriteLine($"{item.Name}");
+                System.Console.WriteLine($"{item.Name} - {item.Description}");
             }
         }
 
@@ -265,7 +279,7 @@ namespace capstone.Project.Services
             System.Console.WriteLine("The items in this room are: ");
             foreach (Item item in Game.CurrentRoom.Items)
             {
-                System.Console.WriteLine($"{item.Name}, {item.Description}");
+                System.Console.WriteLine($"{item.Name}");
             }
         }
     }

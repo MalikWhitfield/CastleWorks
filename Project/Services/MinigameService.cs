@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using capstone.Project.Services;
 
 namespace capstone.Services
 {
@@ -7,8 +8,9 @@ namespace capstone.Services
     {
         public bool NumberGuess()
         {
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
             int computerChoice;
-            Console.WriteLine("A strange voice occurs from an unknown souce... But it sounds like... Mark, the Destroyer. Let us play a game, if you want into this room. Win or go back to 1st grade as a grown man. Tommy Boy style.");
+            Console.WriteLine("A strange voice occurs from an unknown souce... But it sounds like... Mark, the Destroyer. Let us play a game, if you want into this room. Win or go back to 1st grade as a grown man. Billy Madison style.");
             Random rnd = new Random();
             computerChoice = rnd.Next(1, 101);
             Console.WriteLine("Guess a number between 1 and 100");
@@ -17,7 +19,6 @@ namespace capstone.Services
             int numberOfGuesses = 0;
             while (!won)
             {
-                Console.BackgroundColor = ConsoleColor.Green;
                 if (Int32.TryParse(Console.ReadLine(), out guess))
                 {
                     if (guess == computerChoice)
@@ -31,14 +32,16 @@ namespace capstone.Services
                         Console.WriteLine("Too high. Guess again.");
                         numberOfGuesses += 1;
                     }
+                    else if (numberOfGuesses >= 8)
+                    {
+                        return false;
+
+                    }
                     else
                     {
                         Console.WriteLine("Too low. Guess again.");
                         numberOfGuesses += 1;
                     }
-                    if (numberOfGuesses >= 8)
-                        System.Console.WriteLine("Too many guesses! Ya died.");
-
                 }
 
                 else
@@ -48,9 +51,11 @@ namespace capstone.Services
                 if (numberOfGuesses == 8)
                 {
                     System.Console.WriteLine("Too many attempts to guess the right number! Who do you work for, Coding Dojo?! You Die!");
+                    // capstone.Project.Services.GameService.GetUserInput();
                     return false;
                 }
             }
+            Console.BackgroundColor = ConsoleColor.Black;
             return true;
         }
         public bool Rps()
@@ -59,7 +64,8 @@ namespace capstone.Services
             bool won = false;
             int numGuess = 0;
             Dictionary<string, char> myDictionary = new Dictionary<string, char>();
-            Console.WriteLine("A strange voice occurs from the back of your own mind... HOW DID IT GET IN THERE? Who knows...? And the voice sounds like... D-DOLLAR SIGN! That voice says.... Let's play Rock Paper Scizz. Win or die. Elementary school rules");
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("A strange voice occurs from the back of your own mind... HOW DID IT GET IN THERE? Who knows...? And the voice sounds like... D$! That voice says.... Let's play Rock Paper Scizz. Win or die. Elementary school rules");
             Console.WriteLine("Choose between rock, paper or scizz.");
             string playerChoice = Console.ReadLine();
             Random rnd = new Random();
@@ -76,6 +82,7 @@ namespace capstone.Services
                     playerChoice = Console.ReadLine();
                     continue;
                 }
+
                 if (computerChoice == 1)
                 {
 
@@ -92,6 +99,13 @@ namespace capstone.Services
                         Console.WriteLine("You LOST! Your blades were crushed! Try again.");
                         playerChoice = Console.ReadLine();
                     }
+                    else if (playerChoice == "scizz" && numGuess >= 2)
+                    {
+                        Console.WriteLine("The computer chose rock");
+                        Console.WriteLine("You LOSE the entire game. If you can't beat D$ in rock paper scizz, you won't make it throught the game.");
+                        System.Console.WriteLine("Play again? ( y / n)");
+                        playerChoice = Console.ReadLine();
+                    }
                     else
                     {
                         Console.WriteLine("That's not an option! Do you work for Coding Dojo, You don't understand rock, paper, scizz?");
@@ -105,6 +119,13 @@ namespace capstone.Services
                         Console.WriteLine("YOU LOSE! You got smothered by paper! Try again!");
                         playerChoice = Console.ReadLine();
                     }
+                    else if (playerChoice == "rock" && numGuess >= 3)
+                    {
+                        Console.WriteLine("The computer chose paper");
+                        Console.WriteLine("You LOSE the entire game. If you can't beat D$ in rock paper scizz, you won't make it throught the game.");
+                        System.Console.WriteLine("Play again? ( y / n)");
+                        playerChoice = Console.ReadLine();
+                    }
 
                     else if (playerChoice == "scizz")
                     {
@@ -115,6 +136,8 @@ namespace capstone.Services
                     else
                     {
                         Console.WriteLine("That's not an option! Do you work for Coding Dojo, You don't understand rock, paper, scizz?");
+                        playerChoice = Console.ReadLine();
+
                     }
                 }
                 else if (computerChoice == 3)
@@ -131,18 +154,32 @@ namespace capstone.Services
                         Console.WriteLine("You got cut open! You Lose! Try Again!");
                         playerChoice = Console.ReadLine();
                     }
+                    else if (playerChoice == "paper")
+                    {
+
+                        Console.WriteLine("The computer chose scizz");
+                        Console.WriteLine("You LOSE the entire game. If you can't beat D$ in rock paper scizz, you won't make it throught the game.");
+                        System.Console.WriteLine("Play again? ( y / n)");
+                        playerChoice = Console.ReadLine();
+                    }
                     else
                     {
                         Console.WriteLine("That's not an option! Do you work for Coding Dojo, You don't understand rock, paper, scizz?");
+                        playerChoice = Console.ReadLine();
+
                     }
                 }
                 numGuess++;
                 if (numGuess == 2)
                 {
                     System.Console.WriteLine("You lost rock, paper, scizz. You lose the game.");
+                    System.Console.WriteLine("If you can't beat D$ in a classic game of rock paper scizz, there is no way you can get through this dungeon. You lose.");
+                    // capstone.Project.Services.GameService.GetUserInput();
                     return false;
+
                 }
             }
+            Console.BackgroundColor = ConsoleColor.Black;
             return true;
         }
     }

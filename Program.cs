@@ -10,6 +10,7 @@ namespace capstone
             Console.Clear();
             GameService gameService = new GameService();
             gameService.Setup();
+
         }
     }
 }

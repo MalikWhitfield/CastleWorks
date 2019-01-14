@@ -8,7 +8,7 @@ namespace capstone.Services
         public bool NumberGuess()
         {
             int computerChoice;
-            Console.WriteLine("A strange voice occurs from an unknown souce... But it sounds like... Mark, the Destroyer. Let us play a game, if you want into this room.");
+            Console.WriteLine("A strange voice occurs from an unknown souce... But it sounds like... Mark, the Destroyer. Let us play a game, if you want into this room. Win or go back to 1st grade as a grown man. Tommy Boy style.");
             Random rnd = new Random();
             computerChoice = rnd.Next(1, 101);
             Console.WriteLine("Guess a number between 1 and 100");
@@ -17,6 +17,7 @@ namespace capstone.Services
             int numberOfGuesses = 0;
             while (!won)
             {
+                Console.BackgroundColor = ConsoleColor.Green;
                 if (Int32.TryParse(Console.ReadLine(), out guess))
                 {
                     if (guess == computerChoice)
@@ -44,6 +45,11 @@ namespace capstone.Services
                 {
                     Console.WriteLine("Not a number. Guess with a number.");
                 }
+                if (numberOfGuesses == 8)
+                {
+                    System.Console.WriteLine("Too many attempts to guess the right number! Who do you work for, Coding Dojo?! You Die!");
+                    return false;
+                }
             }
             return true;
         }
@@ -53,12 +59,12 @@ namespace capstone.Services
             bool won = false;
             int numGuess = 0;
             Dictionary<string, char> myDictionary = new Dictionary<string, char>();
-            Console.WriteLine("A strange voice occurs from the back of your own mind... HOW DID IT GET IN THERE? Who knows...? And the voice sounds like... D-DOLLAR SIGN! That voice says.... Let's play Rock Paper Scizz, if you want into this room.");
+            Console.WriteLine("A strange voice occurs from the back of your own mind... HOW DID IT GET IN THERE? Who knows...? And the voice sounds like... D-DOLLAR SIGN! That voice says.... Let's play Rock Paper Scizz. Win or die. Elementary school rules");
             Console.WriteLine("Choose between rock, paper or scizz.");
             string playerChoice = Console.ReadLine();
             Random rnd = new Random();
             computerChoice = rnd.Next(1, 4);
-            while (!won)
+            while (!won) //whenever you tie you are stuck inside of the while loop forever. i don't know why
             {
                 if (
                     computerChoice == 1 && playerChoice == "rock" ||
@@ -67,6 +73,7 @@ namespace capstone.Services
                     )
                 {
                     Console.WriteLine($"Computer chose {playerChoice}, It is a tie. Play again.");
+                    playerChoice = Console.ReadLine();
                     continue;
                 }
                 if (computerChoice == 1)
@@ -82,12 +89,12 @@ namespace capstone.Services
                     else if (playerChoice == "scizz")
                     {
                         Console.WriteLine("The computer chose rock");
-                        Console.WriteLine("You LOST! LOSER! Play again.");
+                        Console.WriteLine("You LOST! Your blades were crushed! Try again.");
                         playerChoice = Console.ReadLine();
                     }
                     else
                     {
-                        Console.WriteLine("Incorrect input. Type rock, paper or scizz.");
+                        Console.WriteLine("That's not an option! Do you work for Coding Dojo, You don't understand rock, paper, scizz?");
                     }
                 }
                 else if (computerChoice == 2)
@@ -95,7 +102,7 @@ namespace capstone.Services
                     if (playerChoice == "rock")
                     {
                         Console.WriteLine("The computer chose paper");
-                        Console.WriteLine("YOU LOSE! LOSER!");
+                        Console.WriteLine("YOU LOSE! You got smothered by paper! Try again!");
                         playerChoice = Console.ReadLine();
                     }
 
@@ -107,7 +114,7 @@ namespace capstone.Services
                     }
                     else
                     {
-                        Console.WriteLine("Incorrect input. Type rock, paper or scizz.");
+                        Console.WriteLine("That's not an option! Do you work for Coding Dojo, You don't understand rock, paper, scizz?");
                     }
                 }
                 else if (computerChoice == 3)
@@ -121,12 +128,12 @@ namespace capstone.Services
                     else if (playerChoice == "paper")
                     {
                         Console.WriteLine("The computer chose scizz.");
-                        Console.WriteLine("You got cut open! You Lose!");
+                        Console.WriteLine("You got cut open! You Lose! Try Again!");
                         playerChoice = Console.ReadLine();
                     }
                     else
                     {
-                        Console.WriteLine("Incorrect input. Type rock, paper or scizz.");
+                        Console.WriteLine("That's not an option! Do you work for Coding Dojo, You don't understand rock, paper, scizz?");
                     }
                 }
                 numGuess++;

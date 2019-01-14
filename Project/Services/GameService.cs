@@ -15,7 +15,8 @@ namespace capstone.Project.Services
         public void Setup()
         {
             Game = GameSetup.Setup(new Game());
-            Help();
+            // Help();
+            System.Console.WriteLine("You awake in a dimly lit room...");
             StartGame();
         }
 
@@ -131,6 +132,11 @@ namespace capstone.Project.Services
                     }
                 }
                 Game.CurrentRoom = Game.CurrentRoom.Exits[direction];
+                System.Console.WriteLine($"You are in the {Game.CurrentRoom.Name}");
+            }
+            else
+            {
+                System.Console.WriteLine("You walk right into a wall.");
             }
         }
 
@@ -163,6 +169,66 @@ namespace capstone.Project.Services
         public void UseItem(string itemName)
         {
 
+            // string resume = "Resume";
+            string batpoo = "BatPoo";
+            // string bowserCard = "BowserCard";
+            // string goalPole = "GoalPole";
+            // string oneUp = "1Up";
+            // string lavaBubble = "LavaBubble";
+            // string lockpick = "Lockpick";
+
+            Item item = Game.CurrentPlayer.Inventory.Find(Item => Item.Name.ToLower() == itemName);
+
+            if (itemName == batpoo)
+            {
+                System.Console.WriteLine("You used the BatPoo?? WHY?! Why would you even pick up this item?");
+                System.Console.WriteLine("Just for that, you lost the game, weirdo. Would you like to play again? ( y / n)");
+                string input = Console.ReadLine().ToLower();
+                if (input == "y")
+                {
+                    Reset();
+                }
+                if (input == "n")
+                {
+                    Playing = false;
+                }
+            }
+            if (item == null)
+            {
+                System.Console.WriteLine("Hm, seems like that's not an item. Try an actual item.");
+            }
+            if (itemName == "trueresume" && Game.CurrentRoom.Name.ToString() == "North Room")
+            {
+                System.Console.WriteLine("Jake says: 'Haha! So you've got your True Resume... It looks good, but can you pass the final challenge?");
+                System.Console.WriteLine("Zack says: 'Say the magic phrase'");
+                string input = Console.ReadLine().ToLower();
+                if (input == "go bears")
+                {
+                    System.Console.WriteLine("Congratulations, you won! Go get that job!");
+                    System.Console.WriteLine("Type 'quit' to leave the game or 'reset' to do it all again.");
+                }
+                else
+                {
+                    System.Console.WriteLine("You made it this far and still couldn't figure what this was all about... you lose");
+                    System.Console.WriteLine("Continue playing? ( y / n)");
+                    string answer = Console.ReadLine().ToLower();
+                    if (answer == "y")
+                    {
+                        Reset();
+                    }
+                    if (answer == "n")
+                    {
+                        Playing = false;
+                    }
+                }
+            }
+            // if (item != null && item.Name.ToLower() == bowserCard)
+            // {
+            //     System.Console.WriteLine("Using this card individually doesn't do much, however it does seem necessary to have in your possession.");
+            // }
+            // if {item != null && item.Name.ToLower() == resume && (Game.CurrentRoom.Name.ToString == "East Room)
+            // }
+
         }
 
         //Print the list of items in the players inventory to the console
@@ -182,10 +248,10 @@ namespace capstone.Project.Services
             System.Console.WriteLine("The items in this room are: ");
             foreach (Item item in Game.CurrentRoom.Items)
             {
-                System.Console.WriteLine($"{item.Name}");
+                System.Console.WriteLine($"{item.Name}, {item.Description}");
             }
         }
-
-        #endregion
     }
+
+    #endregion
 }

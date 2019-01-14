@@ -61,7 +61,7 @@ namespace capstone.Project.Functions
             westRoom.Items.Add(goalPole);
             westRoom.Items.Add(oneUp);
             westRoom.Items.Add(lavaBubble);
-            westRoom.Items.Add(trueResume);
+            eastRoom.Items.Add(trueResume);
             #endregion
             game.CurrentRoom = southRoom;
             return game;

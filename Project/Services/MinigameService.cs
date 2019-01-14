@@ -69,9 +69,9 @@ namespace capstone.Services
             Console.WriteLine("Choose between rock, paper or scizz.");
             string playerChoice = Console.ReadLine();
             Random rnd = new Random();
-            computerChoice = rnd.Next(1, 4);
             while (!won) //whenever you tie you are stuck inside of the while loop forever. i don't know why
             {
+                computerChoice = rnd.Next(1, 4);
                 if (
                     computerChoice == 1 && playerChoice == "rock" ||
                     computerChoice == 2 && playerChoice == "paper" ||
@@ -166,7 +166,6 @@ namespace capstone.Services
                     {
                         Console.WriteLine("That's not an option! Do you work for Coding Dojo, You don't understand rock, paper, scizz?");
                         playerChoice = Console.ReadLine();
-
                     }
                 }
                 numGuess++;

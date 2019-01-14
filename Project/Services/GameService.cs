@@ -36,9 +36,6 @@ namespace capstone.Project.Services
             Playing = true;
             while (Playing)
             {
-                // Console.WriteLine(Game.CurrentPlayer);
-                Console.Clear();
-                System.Console.WriteLine(Game.CurrentRoom.Description);
                 GetUserInput();
             }
         }
@@ -82,6 +79,9 @@ namespace capstone.Project.Services
                     break;
                 case "help":
                     Help();
+                    break;
+                case "reset":
+                    Reset();
                     break;
                 case "y":
                     Reset();
@@ -129,13 +129,11 @@ namespace capstone.Project.Services
         {
             if (Game.CurrentRoom.Exits.ContainsKey(direction))
             {
-                // Console.Clear();
+                Console.Clear();
                 IRoom nextRoom = Game.CurrentRoom.Exits[direction];
                 if (nextRoom is ChallengeRoom)
                 {
                     ChallengeRoom h = (ChallengeRoom)nextRoom;
-                    // System.Console.WriteLine("CR Casted");
-                    // Console.Clear();
                     System.Console.WriteLine(h.Description);
                     if (!h.OnChallenge())
                     {
@@ -150,6 +148,7 @@ namespace capstone.Project.Services
                             else
                             {
                                 Quit();
+                                break;
                             }
 
                             // if (Game.CurrentRoom.Name == "East Room")
@@ -294,6 +293,7 @@ namespace capstone.Project.Services
         //Display the CurrentRoom Description, Exits, and Items
         public void Look()
         {
+            Console.Clear();
             Console.BackgroundColor = ConsoleColor.DarkMagenta;
             System.Console.WriteLine($"You are in the {Game.CurrentRoom.Name}");
             System.Console.WriteLine($"{Game.CurrentRoom.Description}");

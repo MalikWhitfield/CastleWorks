@@ -80,9 +80,16 @@ namespace capstone.Project.Services
                 case "help":
                     Help();
                     break;
+                case "y":
+                    Reset();
+                    break;
+                case "n":
+                    Quit();
+                    break;
                 case "poop":
                     System.Console.WriteLine("You feel lighter, yet the room is smelly and I don't see any toilet paper in your inventory...");
                     break;
+
                 default:
                     System.Console.WriteLine("That is not a valid command.");
                     break;
@@ -168,35 +175,14 @@ namespace capstone.Project.Services
         //being able to use the item
         public void UseItem(string itemName)
         {
-
-            // string resume = "Resume";
-            string batpoo = "BatPoo";
-            // string bowserCard = "BowserCard";
-            // string goalPole = "GoalPole";
-            // string oneUp = "1Up";
-            // string lavaBubble = "LavaBubble";
-            // string lockpick = "Lockpick";
-
             Item item = Game.CurrentPlayer.Inventory.Find(Item => Item.Name.ToLower() == itemName);
-
-            if (itemName == batpoo)
+            if (itemName == "batpoo")
             {
                 System.Console.WriteLine("You used the BatPoo?? WHY?! Why would you even pick up this item?");
                 System.Console.WriteLine("Just for that, you lost the game, weirdo. Would you like to play again? ( y / n)");
-                string input = Console.ReadLine().ToLower();
-                if (input == "y")
-                {
-                    Reset();
-                }
-                if (input == "n")
-                {
-                    Playing = false;
-                }
+                GetUserInput();
             }
-            if (item == null)
-            {
-                System.Console.WriteLine("Hm, seems like that's not an item. Try an actual item.");
-            }
+
             if (itemName == "trueresume" && Game.CurrentRoom.Name.ToString() == "North Room")
             {
                 System.Console.WriteLine("Jake says: 'Haha! So you've got your True Resume... It looks good, but can you pass the final challenge?");
@@ -211,24 +197,55 @@ namespace capstone.Project.Services
                 {
                     System.Console.WriteLine("You made it this far and still couldn't figure what this was all about... you lose");
                     System.Console.WriteLine("Continue playing? ( y / n)");
-                    string answer = Console.ReadLine().ToLower();
-                    if (answer == "y")
-                    {
-                        Reset();
-                    }
-                    if (answer == "n")
-                    {
-                        Playing = false;
-                    }
+                    // string answer = Console.ReadLine().ToLower();
+                    // if (answer == "y")
+                    // {
+                    //     Reset();
+                    // }
+                    // if (answer == "n")
+                    // {
+                    //     Playing = false;
+                    // }
+                    GetUserInput();
                 }
             }
-            // if (item != null && item.Name.ToLower() == bowserCard)
-            // {
-            //     System.Console.WriteLine("Using this card individually doesn't do much, however it does seem necessary to have in your possession.");
-            // }
-            // if {item != null && item.Name.ToLower() == resume && (Game.CurrentRoom.Name.ToString == "East Room)
-            // }
-
+            if (itemName == "bowsercard")
+            {
+                System.Console.WriteLine("Using this card individually doesn't do much, however it does seem necessary to have in your possession.");
+            }
+            if (itemName == "oneup")
+            {
+                System.Console.WriteLine("Using this card individually doesn't do much, however it does seem necessary to have in your possession.");
+            }
+            if (itemName == "lavabubble")
+            {
+                System.Console.WriteLine("Using this card individually doesn't do much, however it does seem necessary to have in your possession.");
+            }
+            if (itemName == "goalpole")
+            {
+                System.Console.WriteLine("Using this card individually doesn't do much, however it does seem necessary to have in your possession.");
+            }
+            if (itemName == "resume" && Game.CurrentRoom.Name.ToString() == "East Room")
+            {
+                System.Console.WriteLine("Brittany says: Is this a selfie on your resume! You know better than that! You lose!");
+                System.Console.WriteLine("Play again? ( y / n) ");
+                GetUserInput();
+            }
+            if (itemName == "resume" && Game.CurrentRoom.Name.ToString() != "East Room")
+            {
+                System.Console.WriteLine("Using that does nothing here.");
+                GetUserInput();
+            }
+            if (itemName == "resume" && Game.CurrentRoom.Name.ToString() == "North Room")
+            {
+                System.Console.WriteLine("Jake says: You think you can beat me with that old, dusty resume?! The job market will destroy you!");
+                System.Console.WriteLine("Play again? ( y / n) ");
+                GetUserInput();
+            }
+            else
+            {
+                System.Console.WriteLine("Hm, seems like that's not an item. Try an actual item.");
+            }
         }
 
         //Print the list of items in the players inventory to the console
@@ -255,3 +272,4 @@ namespace capstone.Project.Services
 
     #endregion
 }
+

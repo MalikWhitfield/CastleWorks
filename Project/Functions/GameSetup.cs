@@ -21,9 +21,8 @@ namespace capstone.Project.Functions
             Item goalPole = new Item("GoalPole", "This card is from an ancient game played to distract the ancestors from class, although it only resulted in turmoil and the disappointment of one named 'Malik'... It seems this card brings your level to 10, whatever that is.");
             Item oneUp = new Item("1Up", "This card is from an ancient game played to distract the ancestors from class, although it only resulted in turmoil and the disappointment of one named 'Malik'... It seems this card allows you to steal another player's life. But only jerks would do that. Unless Malik did it, then it's reasonable.");
             Item lavaBubble = new Item("LavaBubble", "This card is from an ancient game played to distract the ancestors from class, although it only resulted in turmoil and the disappointment of one named 'Malik'... It seems as though this card allows its user to destroy the life of another player. But only a mondo jerk would do thta. Unless Malik did it, then that's just a great move.");
-            Item batPoo = new Item("BatPoo", "This is just bat poo. Not a secret to win the game. I repeat NOT a secret to win the game.");
+            Item batPoo = new Item("BatPoo", "This is just bat poo, although it is smelly, it may help you.");
             Item resume = new Item("Resume", "This is your old resume! It may need to be updated.");
-            Item lockpick = new Item("Lockpick", "This is your standard, run of the mill, lockpick available at your local Walmart, Amazon or even the Thieves' Guild.");
             Item trueResume = new Item("TrueResume", "Your resume has reached its final form. Now you can take on the ugly, frightening, JOB HUNT!!!!");
             #endregion
 
@@ -31,7 +30,7 @@ namespace capstone.Project.Functions
             Room southRoom = new Room("South Room", "There is an old, dusty resume on the ground, with your name on it, you should probably pick that up. There is also a sign on the wall written in ancient English. It translates to 'Chicago Bears'");
             Room westRoom = new Room("West Room", "There is no one in this room, however there is a table in the middle, surrounded by a couch and a couple chairs.");
             Room centralRoom = new Room("Central Room", "In this room, you can see Felix in the corner, playing Mario with the usual gang, minus one person. Upon seeing you, Felix takes your resume and puts your picture on it, stating 'It's not a resume without a selfie.'");
-            Room eastRoom = new Room("East Room", "You enter this room and see Kasandra, somehow with 8 cards in her hand that have castles on them. In her other hand she has two life tokens from the ancient Mario Game. What will you do?");
+            Room eastRoom = new Room("East Room", "You enter this room and see Kasandra, somehow with 8 cards in her hand that have castles on them. In her other hand she has four life tokens from the ancient Mario Game, clearly cheating. Brittany asks to see your resume. What will you do?");
             Room northRoom = new Room("North Room", "In this room awaits the 4 horsemen of death and their valiant steed. Mark asks: 'Would you like to play a quick game of Dungeons and Dragons?");
             ChallengeRoom rpsChall = new ChallengeRoom("Rps Hall", "This a just an empty hallway. Well maybe it's not empty, because you are inside? Unless you yourself are empty inside... In which case, may your soul find peace.");
             ChallengeRoom numsChall = new ChallengeRoom("NumGuess Hall", "This hallway is not empty. No space is empty if you are in it. :) ");
